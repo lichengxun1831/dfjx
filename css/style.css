@@ -1,0 +1,1194 @@
+/* 全局样式（适配PC+移动端 + iPhone 16专属优化） */
+
+/* 全局基础样式 */
+/* 顶栏容器样式 */
+body {
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  background-color: #fff;
+  color: #333;
+  margin: 0;
+  /* 新增：清除默认边距，避免布局错位 */
+  padding: 0;
+  /* 新增：清除默认内边距 */
+  /* ===== iPhone 16 新增 ===== */
+  -webkit-font-smoothing: antialiased;
+  /* iOS 字体抗锯齿，更清晰 */
+  -webkit-tap-highlight-color: transparent;
+  /* 消除iOS点击高亮框 */
+  overflow-x: hidden;
+  /* 防止窄屏横向溢出 */
+}
+
+/* 顶栏样式 - 适配iPhone 16灵动岛（核心修改） */
+.case-navbar {
+  position: fixed;
+  /* 替换原absolute，确保固定在左上角不偏移 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* ===== iPhone 16 修改 ===== */
+  padding: 10px 20px;
+  padding-top: calc(12px + env(safe-area-inset-top)) !important;
+  /* 关键：避开灵动岛/刘海区域 */
+  background-color: transparent !important;
+  z-index: 9999;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  border: none;
+  /* 去掉默认边框干扰 */
+  margin: 0;
+  /* 清除默认外边距 */
+  /* ===== iPhone 16 新增 ===== */
+  height: auto;
+  /* 自适应高度，避免灵动岛遮挡 */
+}
+
+.case-navbar .navbar-brand {
+  color: #fff !important;
+  /* 强制默认文字白色 */
+  /* 默认文字白色（适配透明背景） */
+  display: flex;
+  /* 新增：logo+文字水平对齐 */
+  align-items: center;
+  /* 新增：垂直居中 */
+  text-decoration: none;
+  /* 新增：去掉链接下划线 */
+  font-weight: bold;
+  gap: 8px;
+  /* ===== iPhone 16 修改 ===== */
+  height: 36px;
+  /* 适配iPhone 16触控尺寸 */
+  font-size: 16px !important;
+  /* 缩小字号，适配窄屏 */
+}
+
+/* 鼠标悬停时顶栏变白 */
+.case-navbar:hover {
+  background-color: #fff !important;
+  /* hover时变白 */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  /* 新增：hover加阴影，提升质感 */
+}
+
+.case-navbar:hover .navbar-brand {
+  color: #333 !important;
+  /* 强制悬停文字变深 */
+}
+
+/* ============================轮播图设置（iPhone 16适配）============================ */
+
+/* 轮播容器 */
+.case-carousel {
+  position: relative;
+  /* 为遮罩/按钮定位做基础 */
+  height: 520px;
+  /* 可根据你的设计调整高度 */
+  overflow: hidden;
+  /* 隐藏超出的轮播项 */
+  margin-top: 0 !important;
+  /* 关键：去掉60px间距，轮播图顶到顶部 */
+  top: 0;
+  /* 强制顶到页面最上方 */
+  /* ===== iPhone 16 新增 ===== */
+  margin-top: calc(env(safe-area-inset-top)) !important;
+  /* 轮播图避开灵动岛高度 */
+}
+
+/* 灰色遮罩层 */
+.carousel-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  /* 半透明灰色，可调整透明度 */
+  z-index: 1;
+  /* 遮罩在轮播项下方、内容上方 */
+  pointer-events: none;
+  /* 不遮挡点击事件 */
+}
+
+
+/* 轮播项容器 */
+.carousel-items {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* 单个轮播项 */
+.carousel-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  /* 默认隐藏 */
+  transition: opacity 0.5s ease;
+  /* 切换动画 */
+  z-index: 2;
+  /* 轮播项在遮罩上 */
+}
+
+/* 激活的轮播项 */
+.carousel-item.active {
+  opacity: 1;
+  /* 显示 */
+}
+
+/* 轮播内容（文字+按钮） */
+.carousel-content {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-align: center;
+  z-index: 3;
+  /* 内容在最上层 */
+  padding: 0 16px !important;
+  /* 缩小左右内边距，适配393px宽度 */
+  width: 90% !important;
+  /* 占比更大，提升可读性 */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* 东方君行案例中心 - iPhone 16字号适配*/
+.carousel-content h1 {
+  font-family: "SimHei", "黑体", sans-serif !important;
+  /* 强制黑体 */
+  font-weight: bold !important;
+  /* 加粗 */
+  color: #ffffff !important;
+  /* 白色 */
+  margin-bottom: 20px !important;
+  /* 一行间隙（可根据需要调整，20px≈一行文字高度） */
+  font-size: 55px !important;
+  /* 可选：调整字号更醒目，按需修改 */
+  line-height: 1.2;
+  /* 行高优化 */
+}
+
+.carousel-content h2 {
+  font-size: 28px;
+  margin: 0 0 10px 0;
+}
+
+.carousel-content h3 {
+  font-family: "SimHei", "黑体", sans-serif !important;
+  color: #ffffff !important;
+  font-size: 35px;
+  margin: 0 0 10px 0;
+}
+
+.carousel-content p {
+  font-family: "SimHei", "黑体", sans-serif !important;
+  color: #ffffff !important;
+  font-size: 18px;
+  margin: 0 0 20px 0;
+}
+
+/* 轮播左右按钮样式（匹配设计） */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  font-size: 30px;
+  font-weight: bold !important;
+  cursor: pointer;
+  z-index: 4;
+  /* 按钮在最上层 */
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  /* 消除行高对箭头位置的影响 */
+  /* ===== iPhone 16 新增 ===== */
+  touch-action: manipulation;
+  /* 消除iOS 300ms点击延迟 */
+}
+
+/* 左按钮位置 */
+.prev-btn {
+  left: 300px !important;
+}
+
+/* 右按钮位置 */
+.next-btn {
+  right: 300px !important;
+}
+
+/* 按钮hover效果（可选） */
+.carousel-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* 轮播指示器样式 */
+.carousel-indicators {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 4;
+  padding: 0;
+  margin: 0;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  /* ===== iPhone 16 新增 ===== */
+  touch-action: manipulation;
+  /* 触控优化 */
+}
+
+/* 激活的指示器（匹配浅绿色） */
+.indicator.active {
+  background-color: #00b388;
+  /* 你要求的浅绿色 */
+}
+
+/* ========== 新增：阅读全文+免费试用按钮样式（匹配图2） ========== */
+.carousel-btns {
+  margin-top: 40px;
+  /* 按钮与上方文字的间距，适配视觉效果 */
+}
+
+/* 阅读全文按钮 */
+.read-full-btn {
+  background-color: #00b388 !important;
+  /* 图2的青绿色背景 */
+  color: #ffffff !important;
+  /* 白色文字 */
+  border: none !important;
+  /* 去掉默认边框 */
+  padding: 10px 28px !important;
+  /* 加宽按钮，匹配图2尺寸 */
+  border-radius: 2px !important;
+  /* 小直角（图2样式） */
+  font-size: 20px !important;
+  /* 字号适配 */
+  font-family: "SimHei", "黑体", sans-serif !important;
+  font-weight: bold !important;
+  /* 黑体，和轮播文字统一 */
+  cursor: pointer;
+  margin-right: 15px !important;
+  /* 与免费试用按钮的间距 */
+}
+
+/* 阅读全文按钮添加>>箭头（图2样式） */
+.read-full-btn:after {
+  content: " >>";
+  color: #fff;
+  margin-left: 6px;
+}
+
+/* 免费试用按钮 */
+.btn-outline-light {
+  background-color: transparent !important;
+  /* 透明背景（图2核心） */
+  border: 1px solid #ffffff !important;
+  /* 白色边框（图2核心） */
+  color: #ffffff !important;
+  /* 白色文字 */
+  padding: 10px 28px !important;
+  /* 与阅读全文同尺寸 */
+  border-radius: 2px !important;
+  /* 小直角 */
+  font-size: 19px !important;
+  font-family: "SimHei", "黑体", sans-serif !important;
+  font-weight: bold !important;
+  /* 黑体统一 */
+  cursor: pointer;
+  /* ===== iPhone 16 新增 ===== */
+  touch-action: manipulation;
+  min-height: 40px;
+  /* 确保触控区域足够 */
+}
+
+/* 免费试用按钮添加>>箭头 */
+.btn-outline-light:after {
+  content: " >>";
+  color: #fff;
+  margin-left: 6px;
+}
+
+/* 按钮hover增强（可选，提升体验） */
+.read-full-btn:hover {
+  background-color: #009a73 !important;
+  /* 略深的青绿色，hover更有层次 */
+}
+
+.btn-outline-light:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  /* 轻微白色背景，hover不突兀 */
+}
+
+/* ============================筛选区域（iPhone 16适配）============================ */
+.filter-wrap {
+  padding: 15px 20px;
+  /* 增加内边距，匹配图二的浅背景框内间距 */
+  max-width: 1200px;
+  margin: 20px auto 0;
+  background-color: #f9f9f9;
+  /* 图二的浅灰色背景框 */
+  border-radius: 4px;
+  /* 图二的圆角容器 */
+  /* ===== iPhone 16 新增 ===== */
+  box-sizing: border-box;
+  /* 盒模型修正 */
+}
+
+/* 仅用于搜索、页面不显示的元素 */
+.hidden-for-search {
+  display: none !important;
+}
+
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+  /* 防止搜索框溢出 */
+  gap: 8px;
+  /* 新增间距，适配换行 */
+}
+
+.filter-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  /* 给搜索框整体加边框，匹配图一的外框效果 */
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+
+}
+
+.search-input {
+  height: 34px;
+  padding: 0 12px;
+  border: none;
+  /* 去掉原右边框，改用搜索框整体边框 */
+  outline: none;
+  font-size: 14px;
+  /* ===== iPhone 16 修改 ===== */
+  width: calc(100% - 40px) !important;
+  /* 自适应宽度，替代固定200px */
+}
+
+.search-btn {
+  height: 40px;
+  width: 40px;
+  /* 按钮宽度适配图一 */
+  background-color: #41a1fc;
+  /* 图一的青绿色背景 */
+  color: #fff !important;
+  /* 放大镜图标白色，图一核心样式 */
+  border: none;
+  border-radius: 0;
+  /* 去掉圆角，和搜索框整体边框统一 */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  /* 放大镜图标尺寸适配 */
+  /* ===== iPhone 16 新增 ===== */
+  touch-action: manipulation;
+}
+
+/* 修改：筛选组布局（横向滚动，匹配示例） */
+.filter-group {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 12px;
+  /* 选项之间的间距，匹配图二 */
+  margin-bottom: 12px;
+  /* 每组之间的垂直间距 */
+  overflow-x: auto;
+  padding-bottom: 5px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  /* ===== iPhone 16 新增 ===== */
+  -webkit-overflow-scrolling: touch;
+  /* iOS弹性滚动，提升体验 */
+  scroll-behavior: smooth;
+  /* 平滑滚动 */
+}
+
+/* 隐藏Chrome/Safari滚动条 */
+.filter-group::-webkit-scrollbar {
+  display: none;
+}
+
+/* “按行业：”等标签样式（匹配图二的普通文字） */
+.filter-label {
+  font-weight: normal;
+  /* 去掉粗体，图二是普通字体 */
+  min-width: auto;
+  /* 自适应宽度，不强制70px */
+  white-space: nowrap;
+  color: #333;
+  /* 黑色文字 */
+  margin-right: 4px;
+  /* 与后续选项的间距 */
+}
+
+/* 筛选标签样式（iPhone 16触控优化） */
+.filter-tag {
+  background-color: transparent;
+  /* 无背景，图二默认样式 */
+  border: none;
+  color: #333;
+  /* 黑色文字，图二默认样式 */
+  border-radius: 4px;
+  /* 选中态圆角 */
+  padding: 4px 8px;
+  /* 内边距匹配图二 */
+  cursor: pointer;
+  font-size: 14px;
+  /* 字号匹配图二 */
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  /* ===== iPhone 16 新增 ===== */
+  touch-action: manipulation;
+  min-height: 32px;
+  /* 最小高度，确保触控 */
+}
+
+/* 选中态样式（匹配图二的“全部”：浅绿底+绿字） */
+.filter-tag.active {
+  background-color: #e6f7f3;
+  /* 浅绿色背景 */
+  color: #00b388;
+  /* 绿色文字 */
+}
+
+/* 非选中态hover样式（匹配图二的轻微背景） */
+.filter-tag:hover:not(.active) {
+  background-color: #21e2b5;
+  color: #f5f5f5;
+}
+
+/* 新增：筛选“其他”下拉菜单样式 */
+.filter-dropdown {
+  position: relative;
+}
+
+.dropdown-btn {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  /* 确保下拉菜单在最上层 */
+  display: none;
+  /* 默认隐藏 */
+  min-width: 120px;
+  /* 固定下拉菜单宽度 */
+}
+
+.filter-dropdown:hover .dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dropdown-menu .filter-tag {
+  border: none;
+  /* 去掉下拉项边框 */
+  border-radius: 0;
+  /* 去掉圆角 */
+  width: 100%;
+  /* 宽度100% */
+  text-align: left;
+  /* 文字左对齐 */
+  padding: 6px 12px;
+  /* 调整内边距 */
+}
+
+.dropdown-menu .filter-tag:hover {
+  background-color: #e6f7f3;
+  color: #00b388;
+
+}
+
+/* ============================案例卡片============================ */
+.case-list {
+  padding: 0 20px 80px;
+  /* 调整：新增左右内边距，适配移动端 */
+  max-width: 1200px;
+  /* 新增：限制最大宽度 */
+  margin: 0 auto;
+  /* 新增：居中 */
+
+}
+
+.case-card-wrap {
+  display: grid;
+  /* 新增：改用grid布局，适配性更好 */
+  grid-template-columns: repeat(4, 1fr);
+  /* 卡片间距（可按需调整，保持视觉美观） */
+  /* 新增：自适应列数 */
+  gap: 20px;
+  /* 新增：卡片间距 */
+  margin-top: 20px;
+  min-width: 0;
+  /* 新增：小屏自动适配列数 */
+  grid-template-columns: repeat(auto-fill, minmax(4, 1fr));
+}
+
+/* 筛选功能 - 隐藏不匹配的卡片 */
+.case-card {
+  display: block;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 15px;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease;
+  box-sizing: border-box;
+  /* 新增：盒模型修正 */
+  /* ===== iPhone 16 新增 ===== */
+  touch-action: manipulation;
+  /* 触控优化 */
+  min-height: 280px;
+  /* 最小高度，避免内容挤压 */
+}
+
+.case-card.hidden {
+  display: none;
+  /* 筛选后隐藏 */
+}
+
+.case-card:hover {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  /* 调整：增强hover阴影 */
+}
+
+.case-card-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.case-card-logo-img {
+  width: 140px;
+  height: 40px;
+  object-fit: contain;
+  margin: 0 0 8px 0;
+  display: block;
+}
+
+.case-card-desc {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 1.4;
+  /* 更紧凑行高 */
+}
+
+.case-card-tags .tag {
+  font-size: 12px;
+  background-color: #f5f5f5;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+  display: inline-block;
+  /* 确保margin-bottom生效 */
+}
+
+/* 分页区域 */
+.pagination {
+  display: flex;
+  gap: 8px;
+  margin: 20px 0;
+  justify-content: center;
+  /* 关键：让分页容器占满父容器宽度 */
+}
+
+.pagination .page-btn {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 2px;
+  /* 轻微圆角，匹配图二视觉 */
+  padding: 16px 22px;
+  /* 小方块尺寸，紧凑排版 */
+  margin: 0 4px;
+  /* 按钮之间的小间距 */
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  color: #333;
+}
+
+/* 当前页激活态（匹配图二的绿色背景+白色文字） */
+.pagination .page-btn.active {
+  background-color: #00b388;
+  /* 图二的绿色 */
+  color: #fff;
+  border-color: #00b388;
+  /* 边框与背景色一致 */
+}
+
+/* 非激活态hover效果（增强交互） */
+.pagination .page-btn:hover:not(.active) {
+  border-color: #00b388;
+  color: #00b388;
+}
+
+/* 省略号样式（匹配图二，无边框） */
+.pagination .ellipsis {
+  padding: 4px 10px;
+  margin: 0 2px;
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.consult-btn {
+  background-color: #52c41a;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  /* 新增：hover动画 */
+}
+
+.consult-btn:hover {
+  background-color: #43a817;
+  /* 新增：hover加深颜色 */
+}
+
+.consult-menu {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  /* 新增：垂直居中 */
+}
+
+.menu-item {
+  color: #666;
+  cursor: pointer;
+  font-size: 14px;
+  transition: color 0.2s ease;
+  /* 新增：hover动画 */
+}
+
+.menu-item:hover {
+  color: #52c41a;
+  /* 新增：hover变绿 */
+}
+
+/* 移动端筛选按钮样式 */
+.mobile-filter-btn {
+  display: none;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 10px;
+  touch-action: manipulation;
+}
+
+.mobile-filter-btn:hover {
+  background-color: #45a049;
+}
+
+/* 移动端筛选面板样式 */
+.mobile-filter-panel {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 80%;
+  max-width: 350px;
+  height: 100vh;
+  background-color: white;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: right 0.3s ease;
+  overflow-y: auto;
+}
+
+.mobile-filter-panel.active {
+  right: 0;
+}
+
+.mobile-filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.mobile-filter-header h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.mobile-filter-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.mobile-filter-content {
+  padding: 15px;
+}
+
+/* 遮罩层样式 */
+.filter-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.filter-overlay.active {
+  display: block;
+}
+
+/* ============================移动端适配============================ */
+@media (width: 393px) and (height: 852px) {
+
+  /* 轮播图高度适配 */
+  .case-carousel {
+    height: 200px !important;
+    /* 调整：移动端轮播高度降低 */
+  }
+
+  /* iPhone 16 轮播文字再缩小 */
+  .carousel-content h1 {
+    font-size: 18px !important;
+  }
+
+  .carousel-content h3 {
+    font-size: 14px !important;
+  }
+
+  .carousel-content p {
+    font-size: 11px !important;
+  }
+
+
+  /* 案例卡片图片高度适配 */
+  .case-card-img {
+    height: 120px;
+  }
+
+  .case-card-logo-img {
+    width: 120px;
+    height: 30px;
+  }
+
+  /* 移动端案例卡片改为1列 */
+  .case-card-wrap {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .consult-menu {
+    display: none;
+    /* 隐藏：移动端隐藏多余菜单，只留咨询按钮 */
+  }
+
+  /* 筛选区域宽度100% */
+  .filter-wrap {
+    max-width: 100% !important;
+    margin: 8px 8px 0 !important;
+    border-radius: 6px !important;
+  }
+
+  /* 分页按钮更紧凑 */
+  .pagination .page-btn {
+    padding: 8px 14px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+  }
+
+  /* 确保移动端筛选按钮显示 */
+  .mobile-filter-btn-container {
+    display: block;
+  }
+
+  .mobile-filter-btn {
+    display: inline-block;
+  }
+
+}
+
+/* 原移动端媒体查询（兼容其他小屏） */
+@media (max-width: 767px) {
+  .filter-title {
+    display: none;
+  }
+
+  /* 移动端筛选按钮容器样式（确保在搜索框下面正中间） */
+  .mobile-filter-btn-container {
+    margin-top: 15px;
+    text-align: center;
+    width: 100%;
+    display: block;
+    /* 确保容器显示 */
+  }
+
+  /* 移动端隐藏分页 */
+  .pagination {
+    display: none;
+  }
+
+  /* 隐藏PC端筛选组 */
+  .filter-wrap>.filter-group {
+    display: none;
+  }
+
+  /* 显示移动端筛选按钮 */
+  .mobile-filter-btn {
+    display: inline-block;
+    /* 关键：显示按钮 */
+    padding: 8px 20px;
+    font-size: 14px;
+    background-color: #00b388;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  /* 显示移动端筛选面板 */
+  .mobile-filter-panel {
+    display: block;
+  }
+
+  /* 调整筛选头部布局 */
+  .filter-header {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .search-box {
+    order: 3;
+    width: 100%;
+  }
+
+  .case-carousel {
+    height: 220px !important;
+  }
+
+  /* 轮播内容位置+内边距适配 */
+  .carousel-content {
+    top: 50% !important;
+    /* 垂直居中 */
+    padding: 0 10px !important;
+    /* 更小的左右内边距 */
+    width: 95% !important;
+    /* 最大化宽度 */
+  }
+
+  /* 轮播标题h1（仅移动端缩小） */
+  .carousel-content h1 {
+    font-size: 20px !important;
+    /* PC端是55px，移动端缩到10px */
+    margin-bottom: 3px !important;
+    /* 压缩间距 */
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+    /* 强制单行，避免换行重叠 */
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  /* 轮播副标题h3（仅移动端缩小） */
+  .carousel-content h3 {
+    font-size: 16px !important;
+    /* PC端是35px，移动端缩到16px */
+    margin: 0 0 4px 0 !important;
+    /* 压缩间距 */
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+    /* 强制单行 */
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  /* 轮播描述p（仅移动端缩小） */
+  .carousel-content p {
+    font-size: 10px !important;
+    /* PC端是18px，移动端缩到12px */
+    margin: 0 0 8px 0 !important;
+    /* 压缩间距 */
+    -webkit-line-clamp: 2 !important;
+    /* 最多2行 */
+  }
+
+  /* 轮播按钮位置（避免移动端超出屏幕） */
+  .prev-btn {
+    left: 12px !important;
+    /* 替换之前的300px，适配小屏 */
+  }
+
+  .next-btn {
+    right: 12px !important;
+    /* 替换之前的300px，适配小屏 */
+  }
+
+  /* 轮播按钮尺寸（仅移动端缩小） */
+  .carousel-btn {
+    width: 36px !important;
+    height: 36px !important;
+    border: 3px solid #fff !important;
+    font-size: 25px !important;
+  }
+
+  /* 阅读全文/免费试用按钮（仅移动端缩小） */
+  .read-full-btn,
+  .btn-outline-light {
+    padding: 6px 16px !important;
+    font-size: 14px !important;
+    margin-right: 8px !important;
+  }
+
+  .carousel-btns {
+    margin-top: 8px !important;
+    /* 压缩按钮与文字的间距 */
+  }
+
+  .case-card-img {
+    height: 140px !important;
+  }
+
+  .case-card-logo-img {
+    width: 140px !important;
+    height: 36px !important;
+  }
+
+  .case-card-wrap {
+    grid-template-columns: 1fr !important;
+  }
+
+  .consult-menu {
+    display: none;
+  }
+
+  /* 电话咨询按钮样式 */
+  .phone-consult {
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .phone-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .wechat-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .phone-btn:hover {
+    background-color: #007bff;
+  }
+
+  .wechat-btn:hover {
+    background-color: #28a745;
+  }
+
+  /* 微信模态弹窗样式 */
+  .wechat-modal-body {
+    text-align: center;
+  }
+
+  .wechat-modal-body img {
+    max-width: 200px;
+    max-height: 200px;
+    margin: 0 auto;
+  }
+
+  /* 模态弹窗样式 */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal.active {
+    display: flex;
+  }
+
+  .modal-content {
+    background-color: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    overflow: hidden;
+    animation: modalFadeIn 0.3s ease;
+  }
+
+  .modal-header {
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+  }
+
+  .modal-header h3 {
+    margin: 0;
+    font-size: 18px;
+  }
+
+  .modal-body {
+    padding: 20px;
+    text-align: center;
+  }
+
+  .modal-footer {
+    padding: 15px;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .modal-btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .cancel-btn {
+    background-color: #f0f0f0;
+    color: #333;
+  }
+
+  .confirm-btn {
+    background-color: #007bff;
+    color: white;
+  }
+
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 平板适配（768px-992px） */
+@media (min-width: 768px) {
+  .case-card-wrap {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+  }
+
+  /* 平板轮播适配 */
+  .case-carousel {
+    height: 350px !important;
+  }
+
+  .carousel-content h1 {
+    font-size: 40px !important;
+  }
+
+  .carousel-content h3 {
+    font-size: 24px !important;
+  }
+
+  .phone-consult {
+    display: none;
+  }
+
+  .mobile-filter-btn-container {
+    display: none;
+  }
+}

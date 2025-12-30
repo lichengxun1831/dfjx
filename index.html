@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <!-- iPhone 16 核心适配：支持灵动岛/刘海、禁止缩放、视口全覆盖 -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+  <title>东方君行案例中心</title>
+  <!-- 引入Bootstrap（快速实现响应式+基础样式） -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <!-- 自定义样式 -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <!-- 顶部导航栏（适配iPhone 16灵动岛） -->
+  <nav class="navbar case-navbar" aria-label="主导航栏">
+    <div class="container">
+      <a class="navbar-brand" href="#" aria-label="东方君行案例中心首页">
+        <img src="images/dfjx-logo.png" alt="公司logo" width="40" class="me-2" loading="lazy">
+        东方君行案例中心
+      </a>
+    </div>
+  </nav>
+
+  <!-- 轮播图区域 -->
+  <section class="case-carousel carousel-container" aria-label="案例轮播图"><!-- 新增轮播容器 -->
+    <!-- 1. 新增：灰色遮罩层（放在carousel-items同级） -->
+    <div class="carousel-overlay"></div>
+    <!-- 轮播项（可添加多个） -->
+    <div class="carousel-items">
+      <!-- 轮播项1（对应趵突泉案例） -->
+      <div class="carousel-item active" style="background-image: url(images/btq-fm.jpg);"
+        data-detail-link="https://www.jiandaoyun.com/index/customer_case/22972"> <!-- 新增data属性：存储当前轮播对应的详情链接 -->
+        <div class="carousel-content">
+          <h1>东方君行案例中心</h1>
+          <h3>趵突泉：零代码构建可复制的跨国协同平台</h3>
+          <p>迭代效率100%提升，快速协同各部门实现数字化转型</p>
+          <div class="carousel-btns">
+            <button class="btn btn-success me-2 read-full-btn" touch-action="manipulation">阅读全文</button>
+            <!-- 新增class：read-full-btn，用于绑定点击事件 -->
+            <a href="https://www.jiandaoyun.com/register" class="btn btn-outline-light"
+              touch-action="manipulation">免费试用</a> <!-- 固定链接：免费试用 -->
+          </div>
+        </div>
+      </div>
+      <!-- 轮播项2（可添加更多，北京壹号示例） -->
+      <div class="carousel-item" style="background-image: url(images/bjyh-fm.jpg);"
+        data-detail-link="https://www.jiandaoyun.com/index/customer_case/22546">
+        <div class="carousel-content">
+          <h1>东方君行案例中心</h1>
+          <h3>简道云助力“北京壹号”酒厂从0到1的数字化建设，实现无纸化工厂管理</h3>
+          <p>企业业务流转效率提升了90%，提升交付及时率60%</p>
+          <div class="carousel-btns">
+            <button class="btn btn-success me-2 read-full-btn" touch-action="manipulation">阅读全文</button>
+            <a href="https://www.jiandaoyun.com/register" class="btn btn-outline-light"
+              touch-action="manipulation">免费试用</a>
+          </div>
+        </div>
+      </div>
+      <!-- 轮播项3（可添加更多，综艺包装示例） -->
+      <div class="carousel-item" style="background-image: url(images/zybz-fm.jpg);"
+        data-detail-link="https://www.jiandaoyun.com/index/customer_case/22747">
+        <div class="carousel-content">
+          <h1>东方君行案例中心</h1>
+          <h3>综艺包装：智能表单+云端协作，简道云实现传统包装企业无纸化革命</h3>
+          <p>综艺包装企业业务流转效率提升80%，数据及时性提高95%,数据准确性提高99%,整个生产赋能提速50%</p>
+          <div class="carousel-btns">
+            <button class="btn btn-success me-2 read-full-btn" touch-action="manipulation">阅读全文</button>
+            <a href="https://www.jiandaoyun.com/register" class="btn btn-outline-light"
+              touch-action="manipulation">免费试用</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 轮播指示器 -->
+    <div class="carousel-indicators">
+      <span class="indicator active" touch-action="manipulation"></span>
+      <span class="indicator" touch-action="manipulation"></span>
+      <span class="indicator" touch-action="manipulation"></span> <!-- 新增这一行 -->
+    </div>
+    <!-- 轮播左右按钮 -->
+    <button class="carousel-btn prev-btn" touch-action="manipulation" aria-label="上一张轮播图">&lt;</button>
+    <button class="carousel-btn next-btn" touch-action="manipulation" aria-label="下一张轮播图">&gt;</button>
+  </section>
+  <!-- 案例筛选区域 -->
+  <section class="filter-wrap" aria-label="案例筛选区">
+    <!-- 标题+搜索框（新增：和示例一致的布局） -->
+    <div class="filter-header">
+      <h2 class="filter-title">案例筛选</h2>
+      <div class="search-box">
+        <input type="text" placeholder="按Enter键搜索关键词" class="search-input" touch-action="manipulation">
+        <button class="search-btn" touch-action="manipulation" aria-label="搜索按钮">🔍</button>
+      </div>
+    </div>
+
+    <!-- 移动端筛选按钮（移到搜索框下面） -->
+    <div class="mobile-filter-btn-container">
+      <button class="mobile-filter-btn" touch-action="manipulation">资料筛选</button>
+    </div>
+
+    <!-- 移动端筛选面板 -->
+    <div class="mobile-filter-panel">
+      <div class="mobile-filter-header">
+        <h3>筛选条件</h3>
+        <button class="mobile-filter-close" touch-action="manipulation">&times;</button>
+      </div>
+      <div class="mobile-filter-content">
+        <!-- 筛选组1：按行业（新增下拉“其他”） -->
+        <div class="filter-group">
+          <span class="filter-label">按企业行业：</span>
+          <div class="filter-tags">
+            <button class="filter-tag active" data-type="industry" data-value="all"
+              touch-action="manipulation">全部</button>
+            <button class="filter-tag" data-type="industry" data-value="manufacture"
+              touch-action="manipulation">制造</button>
+            <button class="filter-tag" data-type="industry" data-value="chemicals"
+              touch-action="manipulation">精细化工</button>
+            <button class="filter-tag" data-type="industry" data-value="food" touch-action="manipulation">食品饮料</button>
+            <button class="filter-tag" data-type="industry" data-value="packaging"
+              touch-action="manipulation">包装</button>
+            <button class="filter-tag" data-type="industry" data-value="inspect" touch-action="manipulation">检测</button>
+          </div>
+        </div>
+        <!-- 筛选组2：按企业规模 -->
+        <div class="filter-group">
+          <span class="filter-label">按企业规模：</span>
+          <div class="filter-tags">
+            <button class="filter-tag active" data-type="scale" data-value="all" touch-action="manipulation">全部</button>
+            <button class="filter-tag" data-type="scale" data-value="large" touch-action="manipulation">大中型</button>
+            <button class="filter-tag" data-type="scale" data-value="growing" touch-action="manipulation">成长型</button>
+          </div>
+        </div>
+        <!-- 筛选组3：按企业性质 -->
+        <div class="filter-group">
+          <span class="filter-label">按企业性质：</span>
+          <div class="filter-tags">
+            <button class="filter-tag active" data-type="nature" data-value="all"
+              touch-action="manipulation">全部</button>
+            <button class="filter-tag" data-type="nature" data-value="state" touch-action="manipulation">央企</button>
+            <button class="filter-tag" data-type="nature" data-value="private" touch-action="manipulation">民企</button>
+            <button class="filter-tag" data-type="nature" data-value="joint" touch-action="manipulation">合资</button>
+            <button class="filter-tag" data-type="nature" data-value="foreign" touch-action="manipulation">外企</button>
+            <button class="filter-tag" data-type="nature" data-value="gov" touch-action="manipulation">政府/事业单位</button>
+          </div>
+        </div>
+        <!-- 筛选组4：按使用场景（新增下拉“其他”） -->
+        <div class="filter-group">
+          <span class="filter-label">按使用场景：</span>
+          <div class="filter-tags">
+            <button class="filter-tag active" data-type="scene" data-value="all" touch-action="manipulation">全部</button>
+            <button class="filter-tag" data-type="scene" data-value="hr" touch-action="manipulation">人事行政</button>
+            <button class="filter-tag" data-type="scene" data-value="sales" touch-action="manipulation">客户/销售</button>
+            <button class="filter-tag" data-type="scene" data-value="purchase"
+              touch-action="manipulation">采购/供应商</button>
+            <button class="filter-tag" data-type="scene" data-value="inventory"
+              touch-action="manipulation">进销存/仓库</button>
+            <button class="filter-tag" data-type="scene" data-value="production"
+              touch-action="manipulation">生产/车间</button>
+            <button class="filter-tag" data-type="scene" data-value="project"
+              touch-action="manipulation">项目/任务/工程</button>
+            <button class="filter-tag" data-type="scene" data-value="finance" touch-action="manipulation">财务/报销</button>
+            <button class="filter-tag" data-type="scene" data-value="asset"
+              touch-action="manipulation">资产/设备/材料</button>
+            <button class="filter-tag" data-type="scene" data-value="store" touch-action="manipulation">门店经营</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 新增：遮罩层 -->
+    <div class="filter-overlay"></div>
+
+  </section>
+
+  <!-- 案例卡片列表 （整合所有案例，iPhone 16适配）-->
+  <section class="container case-list" aria-label="案例列表">
+    <div class="case-card-wrap">
+      <!-- 制造行业 -->
+      <!-- 案例1 中策橡胶（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="manufacture" data-scale="large" data-nature="private" data-scene="asset"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/13086', '_blank')"
+        touch-action="manipulation">
+        <img src="images/zcxj-fm.png" alt="中策橡胶案例封面" class="case-card-img" loading="lazy">
+        <img src="images/zcxj-logo.jpg" alt="中策橡胶案例logo" class="case-card-logo-img" loading="lazy">
+        <!-- 案例卡片中的标题（仅搜索用，不显示） -->
+        <h6 class="case-card-title hidden-for-search">中策橡胶：迈向“未来工厂”</h6>
+        <!-- 案例卡片中的公司名（仅搜索用，不显示） -->
+        <p class="case-card-company hidden-for-search">中策清泉</p>
+        <p class="case-card-desc">迈向“未来工厂”，看中策清泉如何用零代码搭建数字化车间</p>
+        <div class="case-card-tags">
+          <span class="tag">质量</span>
+          <span class="tag">设备</span>
+          <span class="tag">HSE</span>
+        </div>
+      </div>
+      <!-- 案例2 百得精密（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="manufacture" data-scale="large" data-nature="private" data-scene="hr"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/17307', '_blank')"
+        touch-action="manipulation">
+        <img src="images/bdjm-fm.jpg" alt="百得精密案例封面" class="case-card-img" loading="lazy">
+        <img src="images/bdjm-logo.jpg" alt="百得精密案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">百得精密：简道云+FineReport+智能硬件，玩转仓储管理</p>
+        <div class="case-card-tags">
+          <span class="tag">仓储物流</span>
+          <span class="tag">WMS</span>
+          <span class="tag">车辆</span>
+        </div>
+      </div>
+      <!-- 案例3 上汽大众（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="manufacture" data-scale="large" data-nature="private" data-scene="asset"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/13395', '_blank')"
+        touch-action="manipulation">
+        <img src="images/sqdz-fm.jpg" alt="上汽大众案例封面" class="case-card-img" loading="lazy">
+        <img src="images/sqdz-logo.jpg" alt="上汽大众案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">上汽大众：零代码搭建线上办公云平台</p>
+        <div class="case-card-tags">
+          <span class="tag">生产项目</span>
+          <span class="tag">ERP</span>
+          <span class="tag">设备</span>
+        </div>
+      </div>
+
+      <!-- 案例4 科林电气（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="manufacture" data-scale="large" data-nature="private" data-scene="hr"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/13446', '_blank')"
+        touch-action="manipulation">
+        <img src="images/kldq-fm.jpg" alt="科林电气案例封面" class="case-card-img" loading="lazy">
+        <img src="images/kldq-logo.jpg" alt="科林电气案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">科林电气：专精特新“小巨人”企业的数字创新指南</p>
+        <div class="case-card-tags">
+          <span class="tag">报工</span>
+          <span class="tag">精益</span>
+          <span class="tag">安灯</span>
+          <span class="tag">ERP</span>
+        </div>
+      </div>
+      <!-- 案例5 银轮股份（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="manufacture" data-scale="large" data-nature="private" data-scene="asset"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/15538', '_blank')"
+        touch-action="manipulation">
+        <img src="images/ylgf-fm.jpg" alt="银轮股份案例封面" class="case-card-img" loading="lazy">
+        <img src="images/ylgf-logo.jpg" alt="银轮股份案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">成本节约近百万，办公效率提升80%——简道云助力银轮二次创业</p>
+        <div class="case-card-tags">
+          <span class="tag">企业互联</span>
+          <span class="tag">MES</span>
+          <span class="tag">设备</span>
+          <span class="tag">质量</span>
+        </div>
+      </div>
+      <!-- 案例6 上海冠华（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="manufacture" data-scale="large" data-nature="private" data-scene="hr"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/16563', '_blank')"
+        touch-action="manipulation">
+        <img src="images/shgh-fm.jpg" alt="上海冠华案例封面" class="case-card-img" loading="lazy">
+        <img src="images/shgh-logo.jpg" alt="上海冠华案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">没有IT部门的制造工厂，培养出了十四位“应用开发专家”</p>
+        <div class="case-card-tags">
+          <span class="tag">访客</span>
+          <span class="tag">供应商</span>
+          <span class="tag">成本</span>
+          <span class="tag">生产计划</span>
+        </div>
+      </div>
+      <!-- 案例7 中策天津（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="manufacture" data-scale="large" data-nature="private" data-scene="hr"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/17935', '_blank')"
+        touch-action="manipulation">
+        <img src="images/zctj-fm.jpg" alt="中策天津案例封面" class="case-card-img" loading="lazy">
+        <img src="images/zctj-logo.jpg" alt="中策天津案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">中策天津：从细小需求到核心业务，用零代码构建敏捷开发底座</p>
+        <div class="case-card-tags">
+          <span class="tag">员工服务</span>
+          <span class="tag">MES</span>
+          <span class="tag">防疫防汛</span>
+        </div>
+      </div>
+      <!-- 案例8 中复连众（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="manufacture" data-scale="large" data-nature="private" data-scene="asset"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/16281', '_blank')"
+        touch-action="manipulation">
+        <img src="images/zflz-fm.jpg" alt="中复连众案例封面" class="case-card-img" loading="lazy">
+        <img src="images/zflz-logo.jpg" alt="中复连众案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">立足“制造”深耕“智造”，零代码助力中复连众转型升级</p>
+        <div class="case-card-tags">
+          <span class="tag">设备</span>
+          <span class="tag">HSE</span>
+          <span class="tag">报工</span>
+          <span class="tag">生产计划</span>
+        </div>
+      </div>
+      <!-- 案例9 龙辉起重（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="manufacture" data-scale="large" data-nature="private" data-scene="hr"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/12490', '_blank')"
+        touch-action="manipulation">
+        <img src=" images/lhqz-fm.jpg" alt="龙辉起重案例封面" class="case-card-img" loading="lazy">
+        <img src="images/lhqz-logo.jpg" alt="龙辉起重案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">龙辉起重：传统乡镇制造企业到底如何下好数字化这盘大棋？</p>
+        <div class="case-card-tags">
+          <span class="tag">订单</span>
+          <span class="tag">绩效考核</span>
+          <span class="tag">报工</span>
+          <span class="tag">人事信息</span>
+        </div>
+      </div>
+      <!-- 案例10 通用五菱（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="manufacture" data-scale="large" data-nature="private" data-scene="asset"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/17339', '_blank')"
+        touch-action="manipulation">
+        <img src=" images/tywl-fm.jpg" alt="通用五菱案例封面" class="case-card-img" loading="lazy">
+        <img src="images/tywl-logo.jpg" alt="通用五菱案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">上汽通用五菱重庆：突破瓶颈，提升效能，简道云助推物流管理变革</p>
+        <div class="case-card-tags">
+          <span class="tag">设备</span>
+          <span class="tag">质量</span>
+          <span class="tag">请假</span>
+          <span class="tag">维修工单</span>
+        </div>
+      </div>
+      <!-- 案例11 四川众友（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="manufacture" data-scale="large" data-nature="private" data-scene="purchase"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/17305', '_blank')"
+        touch-action="manipulation">
+        <img src=" images/sczy-fm.jpg" alt="四川众友案例封面" class="case-card-img" loading="lazy">
+        <img src="images/sczy-logo.jpg" alt="四川众友案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">四川众友：零代码构建计划、采购、报工、质量的全流程，锻造数字智能工厂</p>
+        <div class="case-card-tags">
+          <span class="tag">采购</span>
+          <span class="tag">供应商</span>
+          <span class="tag">仓储物流</span>
+        </div>
+      </div>
+      <!-- 案例12 乐森机器人（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="manufacture" data-scale="large" data-nature="private" data-scene="purchase"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/17508', '_blank')"
+        touch-action="manipulation">
+        <img src=" images/lsjqr-fm.jpg" alt="乐森机器人案例封面" class="case-card-img" loading="lazy">
+        <img src="images/lsjqr-logo.jpg" alt="乐森机器人案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">乐森机器人：简道云促进全流程闭环，生产效率提升80%！</p>
+        <div class="case-card-tags">
+          <span class="tag">采购</span>
+          <span class="tag">生产计划</span>
+        </div>
+      </div>
+      <!-- 案例13 五洋医疗（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="manufacture" data-scale="large" data-nature="private"
+        data-scene="production" onclick="window.open('https://www.jiandaoyun.com/index/customer_case/17509', '_blank')"
+        touch-action="manipulation">
+        <img src=" images/wyyl-fm.jpg" alt="五洋医疗案例封面" class="case-card-img" loading="lazy">
+        <img src="images/wyyl-logo.jpg" alt="五洋医疗案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">五洋医疗：简道云在制造业中的灵活实用，实现数字化派工和产品可追溯管理</p>
+        <div class="case-card-tags">
+          <span class="tag">生产项目</span>
+          <span class="tag">质量</span>
+          <span class="tag">点巡检</span>
+        </div>
+      </div>
+      <!-- 案例14 威尔雅（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="manufacture" data-scale="large" data-nature="private" data-scene="purchase"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/22427', '_blank')"
+        touch-action="manipulation">
+        <img src="images/wey-fm.jpg" alt="威尔雅案例封面" class="case-card-img" loading="lazy">
+        <img src="images/wey-logo.jpg" alt="威尔雅案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">威尔雅：携手简道云WMS，开启仓储“数”变新征程</p>
+        <div class="case-card-tags">
+          <span class="tag">客户</span>
+          <span class="tag">供应商</span>
+          <span class="tag">WMS</span>
+          <span class="tag">CRM</span>
+        </div>
+      </div>
+      <!-- 案例15 天津飞悦（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="manufacture" data-scale="growing" data-nature="private"
+        data-scene="production" onclick="window.open('https://www.jiandaoyun.com/index/customer_case/22728', '_blank')"
+        touch-action="manipulation">
+        <img src="images/tjfy-fm.jpg" alt="天津飞悦案例封面" class="case-card-img" loading="lazy">
+        <img src="images/tjfy-logo.jpg" alt="天津飞悦案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">天津飞悦：简道云助力实现全过程数字化管理</p>
+        <div class="case-card-tags">
+          <span class="tag">设备</span>
+          <span class="tag">生产计划</span>
+        </div>
+      </div>
+      <!-- 案例16 东方塑业（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="manufacture" data-scale="growing" data-nature="private"
+        data-scene="production" onclick="window.open('https://www.jiandaoyun.com/index/customer_case/23150', '_blank')"
+        touch-action="manipulation">
+        <img src="images/dfsy-fm.jpg" alt="东方塑业案例封面" class="case-card-img" loading="lazy">
+        <img src="images/dfsy-logo.jpg" alt="东方塑业案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">“塑”造新程——注塑行业的数字化智造转型蓝图</p>
+        <div class="case-card-tags">
+          <span class="tag">MES</span>
+          <span class="tag">精益</span>
+          <span class="tag">生产项目</span>
+          <span class="tag">生产计划</span>
+        </div>
+      </div>
+      <!-- 案例17 亦恩纺织（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="manufacture" data-scale="growing" data-nature="private" data-scene="sales"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/23265', '_blank')"
+        touch-action="manipulation">
+        <img src="images/yefz-fm.jpg" alt="亦恩纺织案例封面" class="case-card-img" loading="lazy">
+        <img src="images/yefz-logo.jpg" alt="亦恩纺织案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">针线穿数据，织就新制造：简道云助力亦恩纺织数字化转型</p>
+        <div class="case-card-tags">
+          <span class="tag">绩效考核</span>
+          <span class="tag">CRM</span>
+          <span class="tag">订单</span>
+          <span class="tag">合同</span>
+        </div>
+      </div>
+      <!-- 精细化工 -->
+      <!-- 案例1 上海巴斯夫（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="chemicals" data-scale="large" data-nature="joint" data-scene="purchase"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/17128', '_blank')"
+        touch-action="manipulation">
+        <img src="images/bsf-fm.jpg" alt="上海巴斯夫案例封面" class="case-card-img" loading="lazy">
+        <img src="images/bsf-logo.jpg" alt="上海巴斯夫案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">上海巴斯夫聚氨酯：零代码构建可复制的跨国协同平台</p>
+        <div class="case-card-tags">
+          <span class="tag">供应商</span>
+          <span class="tag">HSE</span>
+          <span class="tag">生产项目</span>
+        </div>
+      </div>
+      <!-- 案例2 华纳集团（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="chemicals" data-scale="large" data-nature="joint" data-scene="asset"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/17883', '_blank')"
+        touch-action="manipulation">
+        <img src="images/hnjt-fm.jpg" alt="华纳集团案例封面" class="case-card-img" loading="lazy">
+        <img src="images/hnjt-logo.jpg" alt="华纳集团案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">华纳集团：这家“中国纳米钙第一强”，靠它实现了全员数字化创新</p>
+        <div class="case-card-tags">
+          <span class="tag">设备</span>
+          <span class="tag">CRM</span>
+          <span class="tag">HSE</span>
+          <span class="tag">订单</span>
+        </div>
+      </div>
+      <!-- 案例3 茂名石化（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="chemicals" data-scale="growing" data-nature="joint" data-scene="project"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/15541', '_blank')"
+        touch-action="manipulation">
+        <img src="images/mmsh-fm.jpg" alt="茂名石化案例封面" class="case-card-img" loading="lazy">
+        <img src="images/mmsh-logo.jpg" alt="茂名石化案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">茂名石化：零代码助力打通数字化“最后一公里”</p>
+        <div class="case-card-tags">
+          <span class="tag">绩效考核</span>
+          <span class="tag">HSE</span>
+          <span class="tag">工程劳务</span>
+        </div>
+      </div>
+      <!-- 案例4 福克斯波罗（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="chemicals" data-scale="growing" data-nature="foreign" data-scene="asset"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/13397', '_blank')"
+        touch-action="manipulation">
+        <img src="images/fksbl-fm.jpg" alt="福克斯波罗案例封面" class="case-card-img" loading="lazy">
+        <img src="images/fksbl-logo.jpg" alt="福克斯波罗案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">福克斯波罗：零代码平台助力数字化转型，实现300%ROI的经验分享</p>
+        <div class="case-card-tags">
+          <span class="tag">设备</span>
+          <span class="tag">CRM</span>
+          <span class="tag">HSE</span>
+          <span class="tag">订单</span>
+        </div>
+      </div>
+      <!-- 食品饮料 -->
+      <!-- 案例1 趵突泉（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="food" data-scale="growing" data-nature="private" data-scene="purchase"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/22972', '_blank')"
+        touch-action="manipulation">
+        <img src="images/btq-fm.jpg" alt="趵突泉案例封面" class="case-card-img" loading="lazy">
+        <img src="images/btq-logo.jpg" alt="趵突泉案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">趵突泉：新旧厂迭代，简道云助力百年大厂，趵突泉信息化转型激发新活力</p>
+        <div class="case-card-tags">
+          <span class="tag">采购</span>
+          <span class="tag">进销存</span>
+          <span class="tag">合同</span>
+          <span class="tag">点巡检</span>
+        </div>
+      </div>
+      <!-- 案例2 北京壹号（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="food" data-scale="large" data-nature="joint" data-scene="production"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/22546', '_blank')"
+        touch-action="manipulation">
+        <img src="images/bjyh-fm.jpg" alt="北京壹号案例封面" class="case-card-img" loading="lazy">
+        <img src="images/bjyh-logo.jpg" alt="北京壹号案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">简道云助力“北京壹号”酒厂从0到1的数字化建设，实现无纸化工厂管理。</p>
+        <div class="case-card-tags">
+          <span class="tag">生产项目</span>
+          <span class="tag">进销存</span>
+        </div>
+      </div>
+      <!-- 案例3 纳曲酒业（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="food" data-scale="large" data-nature="private" data-scene="production"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/13438', '_blank')"
+        touch-action="manipulation">
+        <img src="images/nqjy-fm.jpg" alt="纳曲酒业案例封面" class="case-card-img" loading="lazy">
+        <img src="images/nqjy-logo.jpg" alt="纳曲酒业案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">纳曲酒业：数字化转型为公司节省了284万投入！</p>
+        <div class="case-card-tags">
+          <span class="tag">CRM</span>
+        </div>
+      </div>
+      <!-- 案例4 万果红（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="food" data-scale="large" data-nature="private" data-scene="sales"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/23328', '_blank')"
+        touch-action="manipulation">
+        <img src="images/wgh-fm.jpg" alt="万果红案例封面" class="case-card-img" loading="lazy">
+        <img src="images/wgh-logo.jpg" alt="万果红案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">万果红酒业：ERP数字化系统介绍</p>
+        <div class="case-card-tags">
+          <span class="tag">订单</span>
+          <span class="tag">经销商</span>
+          <span class="tag">财务收支</span>
+        </div>
+      </div>
+      <!-- 案例5 蒙牛（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="food" data-scale="large" data-nature="state" data-scene="finance"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/12542', '_blank')"
+        touch-action="manipulation">
+        <img src="images/mn-fm.jpg" alt="蒙牛案例封面" class="case-card-img" loading="lazy">
+        <img src="images/mn-logo.jpg" alt="蒙牛案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">蒙牛乳业：600名全民开发者，在数字世界实现高效创新</p>
+        <div class="case-card-tags">
+          <span class="tag">考勤</span>
+          <span class="tag">成本</span>
+          <span class="tag">会议</span>
+        </div>
+      </div>
+      <!-- 案例6 乐纯（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="food" data-scale="growing" data-nature="private" data-scene="finance"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/16215', '_blank')"
+        touch-action="manipulation">
+        <img src="images/lc-fm.jpg" alt="乐纯案例封面" class="case-card-img" loading="lazy">
+        <img src="images/lc-logo.jpg" alt="乐纯案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">乐纯：如何高效管理食品行业线下渠道预算</p>
+        <div class="case-card-tags">
+          <span class="tag">预算</span>
+          <span class="tag">财务收支</span>
+        </div>
+      </div>
+      <!-- 案例7 粤加大（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="food" data-scale="large" data-nature="joint" data-scene="store"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/17322', '_blank')"
+        touch-action="manipulation">
+        <img src="images/yjd-fm.jpg" alt="粤加大案例封面" class="case-card-img" loading="lazy">
+        <img src="images/yjd-logo.jpg" alt="粤加大案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">粤加大：从低代码转到零代码，粤加大如何通过信息化节约成本40W+?</p>
+        <div class="case-card-tags">
+          <span class="tag">门店运营</span>
+          <span class="tag">进销存</span>
+          <span class="tag">行政OA</span>
+        </div>
+      </div>
+      <!-- 案例8 外婆味道（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="food" data-scale="growing" data-nature="private" data-scene="store"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/20505', '_blank')"
+        touch-action="manipulation">
+        <img src="images/wpwd-fm.jpg" alt="外婆味道案例封面" class="case-card-img" loading="lazy">
+        <img src="images/wpwd-logo.jpg" alt="外婆味道案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">外婆味道：抓住信息化的转型机遇，实现餐饮和数据的碰撞</p>
+        <div class="case-card-tags">
+          <span class="tag">合同</span>
+          <span class="tag">售后</span>
+          <span class="tag">门店运营</span>
+        </div>
+      </div>
+      <!-- 案例9 汇祥食品（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="food" data-scale="large" data-nature="private" data-scene="production"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/20915', '_blank')"
+        touch-action="manipulation">
+        <img src="images/hxsp-fm.jpg" alt="汇祥食品案例封面" class="case-card-img" loading="lazy">
+        <img src="images/hxsp-logo.jpg" alt="汇祥食品案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">食品行业零代码数字化建设- 汇祥食品数字化转型</p>
+        <div class="case-card-tags">
+          <span class="tag">生产计划</span>
+          <span class="tag">车辆</span>
+        </div>
+      </div>
+      <!-- 案例10 百草味（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="food" data-scale="large" data-nature="private" data-scene="sales"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/22024', '_blank')"
+        touch-action="manipulation">
+        <img src="images/bcw-fm.jpg" alt="百草味案例封面" class="case-card-img" loading="lazy">
+        <img src="images/bcw-logo.jpg" alt="百草味案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">百草味：简道云在食品商贸行业中提供全面可扩展的长尾需求解决方案</p>
+        <div class="case-card-tags">
+          <span class="tag">订单</span>
+          <span class="tag">客户</span>
+          <span class="tag">销售预测</span>
+        </div>
+      </div>
+      <!-- 案例11 和士美（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="food" data-scale="growing" data-nature="private" data-scene="inventory"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/23332', '_blank')"
+        touch-action="manipulation">
+        <img src="images/hsm-fm.jpg" alt="和士美案例封面" class="case-card-img" loading="lazy">
+        <img src="images/hsm-logo.jpg" alt="和士美案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">和士美饮品：简道云生长型平台 —— 助力和士美饮品实现工厂管理数字化转型</p>
+        <div class="case-card-tags">
+          <span class="tag">进销存</span>
+          <span class="tag">经销商</span>
+          <span class="tag">设备</span>
+          <span class="tag">质量</span>
+        </div>
+      </div>
+      <!-- 包装行业 -->
+      <!-- 案例1 综艺包装（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="packaging" data-scale="large" data-nature="private" data-scene="inventory"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/22747', '_blank')"
+        touch-action="manipulation">
+        <img src="images/zybz-fm.jpg" alt="综艺包装案例封面" class="case-card-img" loading="lazy">
+        <img src="images/zybz-logo.jpg" alt="综艺包装案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">综艺包装：智能表单+云端协作，简道云实现传统包装企业无纸化革命</p>
+        <div class="case-card-tags">
+          <span class="tag">设备</span>
+          <span class="tag">进销存</span>
+          <span class="tag">质量</span>
+        </div>
+      </div>
+      <!-- 案例2 大吉包装（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="packaging" data-scale="large" data-nature="private" data-scene="production"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/16323', '_blank')"
+        touch-action="manipulation">
+        <img src="images/djbz-fm.jpg" alt="大吉包装案例封面" class="case-card-img" loading="lazy">
+        <img src="images/djbz-logo.jpg" alt="大吉包装案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">大吉包装： 简道云上构建CRM+ERP，覆盖90%企业业务！</p>
+        <div class="case-card-tags">
+          <span class="tag">CRM</span>
+          <span class="tag">生产计划</span>
+          <span class="tag">企业互联</span>
+          <span class="tag">ERP</span>
+        </div>
+      </div>
+      <!-- 检测行业 -->
+      <!-- 案例1 华测检测（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="inspect" data-scale="growing" data-nature="private" data-scene="finance"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/20318', '_blank')"
+        touch-action="manipulation">
+        <img src="images/hcjc-fm.jpg" alt="华测检测案例封面" class="case-card-img" loading="lazy">
+        <img src="images/hcjc-logo.jpg" alt="华测检测案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">华测检测：简道云助力实现智能化多维管理，轻松驾驭管理挑战！</p>
+        <div class="case-card-tags">
+          <span class="tag">预算</span>
+        </div>
+      </div>
+      <!-- 案例2 万世检测（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="inspect" data-scale="growing" data-nature="private" data-scene="project"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/13302', '_blank')"
+        touch-action="manipulation">
+        <img src="images/wsjc-fm.jpg" alt="万世检测案例封面" class="case-card-img" loading="lazy">
+        <img src="images/wsjc-logo.jpg" alt="万世检测案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">万世检测：零代码开发助力中小型环境检测企业实现信息化管理</p>
+        <div class="case-card-tags">
+          <span class="tag">工作计划</span>
+          <span class="tag">合同</span>
+        </div>
+      </div>
+      <!-- 案例3 章洋工程（点击跳转到另一个外部链接） -->
+      <div class="case-card" data-industry="inspect" data-scale="large" data-nature="private" data-scene="inventory"
+        onclick="window.open('https://www.jiandaoyun.com/index/customer_case/23280', '_blank')"
+        touch-action="manipulation">
+        <img src="images/zygc-fm.jpg" alt="章洋工程案例封面" class="case-card-img" loading="lazy">
+        <img src="images/zygc-logo.jpg" alt="章洋工程案例logo" class="case-card-logo-img" loading="lazy">
+        <p class="case-card-desc">赣州章洋工程检测：数字化管理赋能工程质量检测新标杆</p>
+        <div class="case-card-tags">
+          <span class="tag">订单</span>
+          <span class="tag">进销存</span>
+          <span class="tag">质量</span>
+          <span class="tag">CRM</span>
+        </div>
+      </div>
+    </div>
+    <div class="pagination" aria-label="案例分页"></div>
+  </section>
+  <!-- 电话咨询按钮 -->
+  <div class="phone-consult">
+    <button class="phone-btn" onclick="showPhoneModal()">电话咨询</button>
+    <button class="wechat-btn" onclick="showWechatModal()">微信咨询</button>
+  </div>
+
+  <!-- 电话咨询模态弹窗 -->
+  <div id="phoneModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>提示</h3>
+      </div>
+      <div class="modal-body">
+        <p>确定要拨打电话：15805417038吗？</p>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-btn cancel-btn" onclick="hidePhoneModal()">取消</button>
+        <button class="modal-btn confirm-btn" onclick="makePhoneCall()">确定</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 微信咨询模态弹窗 -->
+  <div id="wechatModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>扫码添加好友咨询</h3>
+      </div>
+      <div class="modal-body wechat-modal-body">
+        <img src="images/wechat-qr.jpg" alt="微信二维码">
+      </div>
+      <div class="modal-footer">
+        <button class="modal-btn cancel-btn" onclick="hideWechatModal()">关闭</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 引入JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
